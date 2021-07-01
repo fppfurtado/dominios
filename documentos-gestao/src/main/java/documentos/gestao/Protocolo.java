@@ -32,7 +32,7 @@ public class Protocolo extends Documento {
     public Protocolo(IOrganizacao origem, Integer numero) {
         super();
         this.origem = origem;
-        this.estrutura.add(new ElementoDocumento("numero", numero.toString()));
+        this.elementoRaiz.getElementosFilhos().put("numero", new ElementoDocumento("numero"));
     }
 
     /**
@@ -60,7 +60,7 @@ public class Protocolo extends Documento {
      * @return o número de identificação do protocolo
      */
     public String getNumero() {
-        return buscarElementoPorNome("numero").getConteudo();
+        return elementoRaiz.getConteudo();
     }
 
     /**

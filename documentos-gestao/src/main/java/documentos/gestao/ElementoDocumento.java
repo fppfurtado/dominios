@@ -1,7 +1,6 @@
 package documentos.gestao;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Map;
 
 /**
  * <p>A classe representa um elemento genérico que compõe um documento estruturado.</p>
@@ -24,9 +23,19 @@ public class ElementoDocumento {
      */
     private String conteudo;
     /**
-     * Conjunto de subelementos do elemento atual
+     * Conjunto de subelementos do elemento atual, identificados por nome único.
+     * Um elemento pode ter ou não elementos-filhos.
      */
-    private Set<ElementoDocumento> elementos = new HashSet<>();
+    private Map<String, ElementoDocumento> elementosFilhos;
+
+    /**
+     * Método construtor da classe. Para criar um elemento é obrigatório informar
+     * o nome do elemento.
+     * @param nome
+     */
+    public ElementoDocumento(String nome) {
+        this.nome = nome;
+    }
 
     /**
      * Método construtor da classe. Para criar um elemento é obrigatório informar
@@ -37,6 +46,19 @@ public class ElementoDocumento {
     public ElementoDocumento(String nome, String conteudo) {
         this.nome = nome;
         this.conteudo = conteudo;
+    }
+
+    /**
+     * Método construtor da classe. Para criar um elemento é obrigatório informar
+     * o nome, o conteúdo e os filhos do elemento.
+     * @param nome
+     * @param conteudo
+     * @param elementosFilhos
+     */
+    public ElementoDocumento(String nome, String conteudo, Map<String, ElementoDocumento> elementosFilhos) {
+        this.nome = nome;
+        this.conteudo = conteudo;
+        this.elementosFilhos = elementosFilhos;
     }
 
     /**
@@ -67,8 +89,8 @@ public class ElementoDocumento {
      * Retorna o conjunto de subelementos do elemento atual
      * @return o conjunto de subelementos ou null caso a colação não possua objetos
      */
-    public Set<ElementoDocumento> getElementos() {
-        return elementos;
+    public Map<String, ElementoDocumento> getElementosFilhos() {
+        return elementosFilhos;
     }
 
     /**
